@@ -1,9 +1,10 @@
 <script setup>
+import CreateTodoForm from '@/components/CreateTodoForm.vue';
 </script>
 
 <template>
   <div>
-    <h1>Index View</h1>
+    <CreateTodoForm />
   </div>
 </template>
 

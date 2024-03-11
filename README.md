@@ -12,24 +12,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+* Fork the project, and clone to own machine
+* Copy the config template:
+    ```sh
+    cp src/configs/firebase.js.template src/configs/firebase.js
+    ```
+* Update the config, with specification from your own Firebase project`
+* Run `npm install`
+* Run `npm run dev` for running test server
+* Happy coding

@@ -1,5 +1,8 @@
 <script setup>
 import { nextTick, ref } from 'vue';
+import { useTodoStore } from '@/stores/TodoStore';
+
+const todo = useTodoStore();
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -20,8 +23,12 @@ const changeEditState = () => {
   }
 };
 
-const deleteTask = () => {
-  console.log('delete task');
+const updateTask = (taskId) => {
+  console.log('update task', taskId);
+};
+
+const deleteTask = (taskId) => {
+  console.log('delete task', taskId);
 };
 </script>
 
@@ -39,8 +46,8 @@ const deleteTask = () => {
 
     <div>
       <button class="task__btn" @click="changeEditState">{{ editMode? 'Cancel' : 'Edit' }}</button>
-      <button class="task__btn" v-if="editMode" @click="saveTask">Save</button>
-      <button class="task__btn" v-if="!editMode" @click="deleteTask">Delete</button>
+      <button class="task__btn" v-if="editMode" @click="updateTask(id)">Save</button>
+      <button class="task__btn" v-if="!editMode" @click="deleteTask(id)">Delete</button>
     </div>
   </div>
 </template>

@@ -5,6 +5,8 @@ import * as todo from '@/services/TodoService';
 export const useTodoStore = defineStore('todos', () => {
   const tasks = ref([]);
 
+  todo.onUpdate((data) => tasks.value = data);
+
   const createTask = async (task) => {
     try {
       const res = await todo.createTodo(task);
@@ -15,8 +17,6 @@ export const useTodoStore = defineStore('todos', () => {
       };
     }
   };
-
-  todo.onUpdate((data) => tasks.value = data);
 
   return {
     createTask,

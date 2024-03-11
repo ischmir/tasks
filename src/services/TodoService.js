@@ -7,10 +7,12 @@ import {
   getDocs,
   onSnapshot,
   doc,
+  updateDoc,
 } from 'firebase/firestore';
 
 const db = getFirestore();
 const col = collection(db, 'todos');
+let disableUpdate = false;
 
 if(import.meta.env.MODE === 'development') {
   connectFirestoreEmulator(db, 'localhost', 8080);
@@ -51,8 +53,29 @@ export const getTodos = async () => {
 };
 
 export const onUpdate = (cb) => {
+  if(disableUpdate) return;
+  console.log('onUpdate');
   if(typeof cb !== 'function') return;
   const unsub = onSnapshot(col, async (snapshot) => {
     cb(await getTodos());
   });
+};
+
+export const updateTodo = async (id, todo) => {
+  disableUpdate = true;
+  try {
+    const ref = doc(db, 'todos', id);
+    await updateDoc(ref, {
+      ...todo,
+      updatedAt: new Date(),
+    });
+
+    return todo;
+  } catch (e) {
+    return {
+      error: e,
+    };
+  } finally {
+    disableUpdate = false;
+  }
 };

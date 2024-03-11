@@ -1,10 +1,12 @@
 <script setup>
-import CreateTodoForm from '@/components/CreateTodoForm.vue';
+import TodoForm from '@/components/TodoForm.vue';
+import TodoList from '@/components/TodoList.vue';
 </script>
 
 <template>
-  <div>
-    <CreateTodoForm />
+  <div class="todo">
+    <TodoForm />
+    <TodoList />
   </div>
 </template>
 
